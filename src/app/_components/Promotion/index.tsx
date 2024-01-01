@@ -4,9 +4,9 @@ import { Button } from '../Button'
 import Image from 'next/image'
 
 import classes from './index.module.scss'
-import { useState } from 'react';
-import { useEffect } from 'react';
-const Promotion = () => {
+import { useState } from 'react'
+import { useEffect } from 'react'
+export const Promotion = () => {
   const [time, setTime] = useState({
     days: 0,
     hours: 0,
@@ -75,4 +75,4 @@ const StatBox = ({ label, value }: { label: string; value: number }) => (
   </li>
 )
 
-export default Promotion
+ 
