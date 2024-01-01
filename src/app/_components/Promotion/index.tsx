@@ -1,12 +1,14 @@
 'use client'
+import React, { useEffect, useState } from 'react'
 
-import { Button } from '../Button'
 import Image from 'next/image'
 
 import classes from './index.module.scss'
-import { useState } from 'react'
-import { useEffect } from 'react'
-export const Promotion = () => {
+import Link from 'next/link'
+
+
+
+ const Promotion = () => {
   const [time, setTime] = useState({
     days: 0,
     hours: 0,
@@ -56,10 +58,10 @@ export const Promotion = () => {
           <StatBox label="Minutes" value={time.minutes} />
           <StatBox label="Seconds" value={time.seconds} />
         </ul>
-        <Button href="/products" className={classes.button}>
-          View Product 
-          <Image src="/assets/icons/arrow-narrow-right.svg" alt="left" width={25} height={25} />
-        </Button>
+        <Link href="/products" className={classes.button}>
+           <button>View Product 
+          <Image src="/assets/icons/arrow-narrow-right.svg" alt="left" width={25} height={25} /></button>  
+        </Link>
       </div>
       <div className={classes.textBox}>
         <Image src="/assets/images/image-4.svg" alt="pc" width={500} height={500} />
@@ -76,3 +78,4 @@ const StatBox = ({ label, value }: { label: string; value: number }) => (
 )
 
  
+export default Promotion
