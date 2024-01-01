@@ -1,10 +1,11 @@
 'use client'
-import   {useEffect, useState } from 'react'
+
 import { Button } from '../Button'
 import Image from 'next/image'
 
 import classes from './index.module.scss'
-
+import { useState } from 'react';
+import { useEffect } from 'react';
 const Promotion = () => {
   const [time, setTime] = useState({
     days: 0,
@@ -19,7 +20,7 @@ const Promotion = () => {
   useEffect(() => {
     const timerInterval = setInterval(() => {
       const currentTime = new Date()
-      const timeDifference = Math.max(Number(targetDate) - Number(currentTime), 0);
+      const timeDifference = Math.max(Number(targetDate) - Number(currentTime), 0)
 
       const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24))
       const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
@@ -36,7 +37,7 @@ const Promotion = () => {
 
     return () => {
       clearInterval(timerInterval) // Cleanup the interval when the component unmounts.
-    };
+    }
   }, [])
 
   return (
@@ -64,8 +65,8 @@ const Promotion = () => {
         <Image src="/assets/images/image-4.svg" alt="pc" width={500} height={500} />
       </div>
     </section>
-  );
-};
+  )
+}
 
 const StatBox = ({ label, value }: { label: string; value: number }) => (
   <li className={classes.statBox}>
