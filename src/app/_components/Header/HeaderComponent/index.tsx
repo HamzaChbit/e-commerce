@@ -1,24 +1,23 @@
 'use client'
-import React, { useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Header } from '../../../../payload/payload-types'
-import { noHeaderFooterUrls } from '../../../constants'
-import { Gutter } from '../../Gutter'
-import { HeaderNav } from '../Nav'
-import classes from './index.module.scss'
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-export const HeaderComponent = ({ header }: { header: Header }) => {
-  const pathname = usePathname()
-  const [showMenu, setShowMenu] = useState(false)
+import { Header } from '../../../../payload/payload-types';
+import { noHeaderFooterUrls } from '../../../constants';
+import { Gutter } from '../../Gutter';
+import { HeaderNav } from '../Nav';
+
+import classes from './index.module.scss';
+
+const HeaderComponent = ({ header }: { header: Header }) => {
+  const pathname = usePathname();
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <nav
-      className={[
-        classes.header,
-        noHeaderFooterUrls.includes(pathname) && classes.hide,
-      ]
+      className={[classes.header, noHeaderFooterUrls.includes(pathname) && classes.hide]
         .filter(Boolean)
         .join(' ')}
     >
@@ -28,21 +27,11 @@ export const HeaderComponent = ({ header }: { header: Header }) => {
         </Link>
         {!showMenu ? (
           <div onClick={() => setShowMenu(true)} className={classes.menu}>
-            <Image
-              src="/assets/icons/menu.svg"
-              alt="menu"
-              width={25}
-              height={25}
-            />
+            <Image src="/assets/icons/menu.svg" alt="menu" width={25} height={25} />
           </div>
         ) : (
           <div onClick={() => setShowMenu(false)} className={classes.menu}>
-            <Image
-              src="/assets/icons/close.svg"
-              alt="menu"
-              width={25}
-              height={25}
-            />
+            <Image src="/assets/icons/close.svg" alt="menu" width={25} height={25} />
           </div>
         )}
 
@@ -59,13 +48,7 @@ export const HeaderComponent = ({ header }: { header: Header }) => {
         )}
       </Gutter>
     </nav>
-  )
-}
+  );
+};
 
-
-
-     
-
-
-
-
+export default HeaderComponent;
