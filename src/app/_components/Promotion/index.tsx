@@ -1,7 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
 
 import classes from './index.module.scss'
 
@@ -55,15 +53,6 @@ const Promotion = () => {
           <StatBox label="Minutes" value={time.minutes} />
           <StatBox label="Seconds" value={time.seconds} />
         </ul>
-        <Link href="/products" className={classes.button}>
-          <button>
-            View Product
-            <Image src="/assets/icons/arrow-narrow-right.svg" alt="left" width={25} height={25} />
-          </button>
-        </Link>
-      </div>
-      <div className={classes.textBox}>
-        <Image src="/assets/images/image-4.svg" alt="pc" width={500} height={500} />
       </div>
     </section>
   )
