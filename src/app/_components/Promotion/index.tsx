@@ -56,7 +56,7 @@ const Promotion = () => {
           <StatBox label="Seconds" value={time.seconds} />
         </ul>
         <Button href="/products" className={classes.button}>
-          View Product{' '}
+          View Product 
           <Image src="/assets/icons/arrow-narrow-right.svg" alt="left" width={25} height={25} />
         </Button>
       </div>
@@ -72,6 +72,6 @@ const StatBox = ({ label, value }: { label: string; value: number }) => (
     <h4>{value}</h4>
     <p>{label}</p>
   </li>
-);
+)
 
-export default Promotion;
+export default Promotion
