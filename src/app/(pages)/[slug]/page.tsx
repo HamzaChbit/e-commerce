@@ -8,15 +8,22 @@ import { staticHome } from '../../../payload/seed/home-static'
 import { fetchDoc } from '../../_api/fetchDoc'
 import { fetchDocs } from '../../_api/fetchDocs'
 import { Blocks } from '../../_components/Blocks'
-import Categories from '../../_components/Categories'
 import { Gutter } from '../../_components/Gutter'
 import { Hero } from '../../_components/Hero'
-
 import { generateMeta } from '../../_utilities/generateMeta'
 
-import classes from './index.module.scss'
-
+// Payload Cloud caches all files through Cloudflare, so we don't need Next.js to cache them as well
+// This means that we can turn off Next.js data caching and instead rely solely on the Cloudflare CDN
+// To do this, we include the `no-cache` header on the fetch requests used to get the data for this page
+// But we also need to force Next.js to dynamically render this page on each request for preview mode to work
+// See https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamic
+// If you are not using Payload Cloud then this line can be removed, see `../../../README.md#cache`
 export const dynamic = 'force-dynamic'
+
+import Categories from '../../_components/Categories'
+import Promotion from '../../_components/Promotion'
+
+import classes from './index.module.scss'
 
 export default async function Page({ params: { slug = 'home' } }) {
   const { isEnabled: isDraftMode } = draftMode()
@@ -33,9 +40,15 @@ export default async function Page({ params: { slug = 'home' } }) {
 
     categories = await fetchDocs<Category>('categories')
   } catch (error) {
-    // Handle error, log, or render fallback content
+    // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
+    // so swallow the error here and simply render the page with fallback data where necessary
+    // in production you may want to redirect to a 404  page or at least log the error somewhere
+    // console.error(error)
   }
 
+  // if no `home` page exists, render a static one using dummy content
+  // you should delete this code once you have a home page in the CMS
+  // this is really only useful for those who are demoing this template
   if (!page && slug === 'home') {
     page = staticHome
   }
@@ -51,8 +64,10 @@ export default async function Page({ params: { slug = 'home' } }) {
       {slug === 'home' ? (
         <section>
           <Hero {...hero} />
+
           <Gutter className={classes.home}>
             <Categories categories={categories} />
+            <Promotion />
           </Gutter>
         </section>
       ) : (
@@ -89,7 +104,10 @@ export async function generateMetadata({ params: { slug = 'home' } }): Promise<M
       draft: isDraftMode,
     })
   } catch (error) {
-    console.log(error)
+    // don't throw an error if the fetch fails
+    // this is so that we can render a static home page for the demo
+    // when deploying this template on Payload Cloud, this page needs to build before the APIs are live
+    // in production you may want to redirect to a 404  page or at least log the error somewhere
   }
 
   if (!page && slug === 'home') {
