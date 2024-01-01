@@ -28,7 +28,7 @@ export default async function Page({ params: { slug = 'home' } }) {
     page = await fetchDoc<Page>({
       collection: 'pages',
       slug,
-      draft: isDraftMode,
+      draft: isDraftMode
     })
 
     categories = await fetchDocs<Category>('categories')
@@ -53,7 +53,6 @@ export default async function Page({ params: { slug = 'home' } }) {
           <Hero {...hero} />
           <Gutter className={classes.home}>
             <Categories categories={categories} />
-           
           </Gutter>
         </section>
       ) : (
@@ -87,7 +86,7 @@ export async function generateMetadata({ params: { slug = 'home' } }): Promise<M
     page = await fetchDoc<Page>({
       collection: 'pages',
       slug,
-      draft: isDraftMode,
+      draft: isDraftMode
     })
   } catch (error) {
     console.log(error)
