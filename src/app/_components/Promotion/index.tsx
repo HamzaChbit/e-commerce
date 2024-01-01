@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react'
 
 import classes from './index.module.scss'
+import { Button } from '../Button'
+import Image from 'next/image'
 
 const Promotion = () => {
   const [time, setTime] = useState({
@@ -39,6 +41,8 @@ const Promotion = () => {
 
   return (
     <section className={classes.promotion}>
+
+
       <div className={classes.textBox}>
         <h3 className={classes.title}>Deals of the Month</h3>
         <p>
@@ -53,7 +57,12 @@ const Promotion = () => {
           <StatBox label="Minutes" value={time.minutes} />
           <StatBox label="Seconds" value={time.seconds} />
         </ul>
+        <Button href='/products' className={classes.button} >View Product     <Image  src='/assets/icons/arrow-narrow-right.svg' alt='left' width={25} height={25}    />  </Button>
+   
+        
       </div>
+      <div   className={classes.textBox}><Image src='/assets/images/image-4.svg' alt='pc' width={500} height={500}   /></div>
+      
     </section>
   )
 }

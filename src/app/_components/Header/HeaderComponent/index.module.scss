@@ -1,3 +1,4 @@
+@use '../../../_css/queries.scss' as *;
 .header {
   padding: 36px 0;
 }
@@ -17,3 +18,65 @@
 .hide { 
   display: none;
 }
+.menu{
+  width: 25px;
+  height: 25px;
+  display: flex;
+  font-size: 2.25rem;
+  color: #fff;
+  display: none;
+  cursor: pointer;
+   overflow: hidden; 
+  
+   @include mid-break {
+    display: block
+  }
+}
+
+
+
+
+
+
+.items{
+  
+  display: block;
+  cursor: pointer;
+  overflow: hidden; 
+
+  @include mid-break {
+    display: none
+  }
+
+
+
+}
+
+
+.mobile{
+position: absolute;
+display: row;
+right: 0;
+width: 200px;
+
+margin-top: 15px;
+z-index: 100;
+height: 150px;
+background-color: #fff;
+display: none;
+border-radius: 10%;
+
+@include mid-break {
+  display: block;
+
+}
+}
+
+.hamza{
+  position: relative;
+  display: flex;
+  width: 100%;
+ 
+}
+
+
